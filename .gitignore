@@ -1,0 +1,4 @@
+in
+node_modules
+out
+*.lock
