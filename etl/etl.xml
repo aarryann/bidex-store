@@ -5,18 +5,24 @@
         <include href="etl.properties"/> <!--Load from external properties file-->
     </properties>
     <!-- Connection declarations -->
-    <connection driver="$driver" url="$url" user="$user" password="$password" classpath="$classpath"/>
-    <!-- Uncomment and add extra connections if necessary. In this case connection-id is required for ALL connections
+    <connection id="in" driver="$driver" url="$url" user="$user" password="$password" classpath="$classpath"/>
+    <!-- Uncomment and add extra connections if necessary. In this case connection-id is required for ALL connections-->
+    <connection id="out" driver="csv" url="../out/out.csv" />
+    <!--
     <connection id="con2" driver="$driver2" url="$url2" user="$user2" password="$password2" classpath="$classpath2">
         connection.property.name=value
     </conection>
     -->
-
-    <!--ETL Queries and Scripts -->
-    <script>
-        -- Put SQL Here or use include element:
-        <!-- <include href="schema.sql"/> -->
+    <script connection-id="out">
+        id,report date,report name,status
     </script>
+    <query connection-id="in">
+        SELECT * FROM "FPDStagingLoads"
+        <script connection-id="out">
+            $1,$2,$3,$4
+        </script>
+    </query>
+    <!--ETL Queries and Scripts -->
 
     <!-- Uncomment and modify to run a query-based transformation
     <query connection-id="con1">
