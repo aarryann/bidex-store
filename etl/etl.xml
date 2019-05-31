@@ -17,7 +17,7 @@
         id,report date,report name,status
     </script>
     <query connection-id="in">
-        SELECT * FROM "FPDStagingLoads"
+        SELECT * FROM "FPDStaging_Summary"
         <script connection-id="out">
             $1,$2,$3,$4
         </script>
