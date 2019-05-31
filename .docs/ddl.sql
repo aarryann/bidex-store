@@ -1,5 +1,3 @@
-USE govodex;
-
 CREATE SEQUENCE public."FDPStaging_SummaryId_seq"
   INCREMENT 1
   MINVALUE 1
